@@ -9,6 +9,7 @@ import re
 import string
 import xgboost as xgb
 import nltk
+from xgboost import XGBClassifier
 nltk.download('stopwords')
 nltk.download('punkt')
 nltk.download('averaged_perceptron_tagger')
@@ -24,8 +25,8 @@ class SentimentRecommenderModel:
     CLEANED_DATA = "cleaned-data.pkl"
 
     def __init__(self):
-        # Load XGBoost model using Booster
-        self.model = xgb.Booster()
+        # Load XGBClassifier model
+        self.model = XGBClassifier()
         self.model.load_model(SentimentRecommenderModel.ROOT_PATH + SentimentRecommenderModel.MODEL_NAME)
 
         # Load other pickled objects
@@ -59,8 +60,9 @@ class SentimentRecommenderModel:
             # transfor the input data using saved tf-idf vectorizer
             X = self.vectorizer.transform(
                 filtered_data["reviews_text_cleaned"].values.astype(str))
-            dtest = xgb.DMatrix(X)
-            filtered_data["predicted_sentiment"] = self.model.predict(dtest)
+            #dtest = xgb.DMatrix(X)
+            #filtered_data["predicted_sentiment"] = self.model.predict(dtest)
+            filtered_data["predicted_sentiment"] = self.model.predict(X)
             temp = filtered_data[['id', 'predicted_sentiment']]
             temp_grouped = temp.groupby('id', as_index=False).count()
             temp_grouped["pos_review_count"] = temp_grouped.id.apply(lambda x: temp[(
