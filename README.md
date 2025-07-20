@@ -12,7 +12,7 @@ The e-commerce business is quite popular today. Here, you do not need to take or
 
 * github link: https://github.com/rajashekar52/sentiment_based_product_recommendation_system
 
-* Heroku (Application is Live): https://sentimentbasedproductsystem-7ac0d151db96.herokuapp.com/
+* Heroku (Application is Live): https://sentimentbasedproductsystem-0189c9ebfeeb.herokuapp.com/
 
 ### Built with
 
@@ -22,7 +22,7 @@ The e-commerce business is quite popular today. Here, you do not need to take or
 * numpy 2.2.6
 * nltk 3.9.1
 * pandas 2.3.1
-* Flask 3.1.1
+* Flask 2.2.5
 
 ### Solution Approach
 
